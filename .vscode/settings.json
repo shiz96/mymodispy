@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "/Users/aaron/opt/miniconda3/envs/three_poles/bin/python",
+    "python.linting.banditEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=240",
+        "--ignore=E402,F841,F401,E302,E305,E722,W291", //编号根据自己需要确定
+    ],
+    "git.ignoreLimitWarning": true,
+}

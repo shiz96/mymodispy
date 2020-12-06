@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e2363ed-fe48-4858-b9bd-fd97e0b36fe9" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="3e2363ed-fe48-4858-b9bd-fd97e0b36fe9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modispy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modispy.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modis.py" beforeDir="false" afterPath="$PROJECT_DIR$/modis.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,20 +24,16 @@
   </component>
   <component name="ProjectId" id="1l9OFqvO1KX2wCzNbYNjxW9I2Nx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="modis" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -48,6 +48,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/modis.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -73,8 +74,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607005739868</updated>
+      <workItem from="1607044073825" duration="562000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -86,16 +91,47 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/modis.py</url>
-          <line>189</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="WindowStateProjectService">
+    <state x="594" y="212" key="#Inspections" timestamp="1607044724765">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state x="594" y="212" key="#Inspections/0.23.1920.1008@0.23.1920.1008" timestamp="1607044724765" />
+    <state width="1878" height="338" key="GridCell.Tab.0.bottom" timestamp="1607044780786">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.0.bottom/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780786" />
+    <state width="1878" height="338" key="GridCell.Tab.0.center" timestamp="1607044780786">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.0.center/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780786" />
+    <state width="1878" height="338" key="GridCell.Tab.0.left" timestamp="1607044780786">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.0.left/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780786" />
+    <state width="1878" height="338" key="GridCell.Tab.0.right" timestamp="1607044780786">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.0.right/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780786" />
+    <state width="1878" height="338" key="GridCell.Tab.1.bottom" timestamp="1607044780787">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.1.bottom/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780787" />
+    <state width="1878" height="338" key="GridCell.Tab.1.center" timestamp="1607044780787">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.1.center/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780787" />
+    <state width="1878" height="338" key="GridCell.Tab.1.left" timestamp="1607044780787">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.1.left/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780787" />
+    <state width="1878" height="338" key="GridCell.Tab.1.right" timestamp="1607044780787">
+      <screen x="0" y="23" width="1920" height="1008" />
+    </state>
+    <state width="1878" height="338" key="GridCell.Tab.1.right/0.23.1920.1008@0.23.1920.1008" timestamp="1607044780787" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/mymodispy$modis.coverage" NAME="modis Coverage Results" MODIFIED="1607044637766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -1,10 +1,10 @@
 import os
 import sys
-import pyresample
+# import pyresample
+from typing import List
 
 import numpy as np
 from pyhdf.SD import SD, SDC
-
 
 
 class ExtractSDSDataArr(object):
@@ -46,8 +46,8 @@ class ExtractSDSDataArr(object):
             # If the its Modis 021KM reflecance data, then the gains and offsets should be obtained.
             # The fill value of reflectance will be reset to -10 to distinguish with the valid data
             data_arr[data_arr == fill_values] = -10
-            ref_scalers = np.array(self.attributes['reflectance_scales'])[:, None, None] # [:, 1, 1]
-            ref_offsets = np.array(self.attributes['reflectance_offsets'])[:, None, None] # [:, 1, 1]
+            ref_scalers = np.array(self.attributes['reflectance_scales'])[:, None, None]  # [:, 1, 1]
+            ref_offsets = np.array(self.attributes['reflectance_offsets'])[:, None, None]  # [:, 1, 1]
             data_arr = (data_arr - ref_offsets) * ref_scalers
             data_arr[data_arr < 0] = background_value
         else:
@@ -63,6 +63,7 @@ class ExtractSDSDataArr(object):
         for sds_arr in self._get_sds_attributes().keys():
             print(sds_arr)
 
+
 class MODIS021KM_L1B(object):
     """class to read MOD021KM file.
     :argument
@@ -70,9 +71,8 @@ class MODIS021KM_L1B(object):
     """
 
     data_version = 'C61'
-    type = "MODIS_021KM"
+    data_type = "021KM"
     level = "1B"
-
 
     def __init__(self, fpath):
 
@@ -81,6 +81,8 @@ class MODIS021KM_L1B(object):
             raise TypeError("It's not a valid hdf4 file.")
         self.SD = self._get_SD()
         self._get_fn_info()
+
+        self.ref_data_list = []
 
     def is_hdf(self):
         """Valid if the file path is the hdf"""
@@ -94,14 +96,29 @@ class MODIS021KM_L1B(object):
             raise IOError("It's an invalid hdf4 file, the file may be broken!")
 
     def _get_fn_info(self):
-        """Get Infomation from the name"""
+        """Get Infomation from the name
+
+        Year, day of the year, month, day, hour and min will be obtained.
+
+        """
+        fn = os.path.basename(self.fpath).split('.')
+        if self.data_type not in fn[0]:
+            raise FileExistsError("It's not MODIS1KM data!")
+
+        self.year = int(fn[1][1:5])
+        self.doy = int(fn[1][5:])
+        self.hour = int(fn[2][:2])
+        self.min = int(fn[2][2:])
+        self.file_version = fn[3]
+
+        return
 
     def show_SD_names(self):
         """Show the sub data set names of the read SD"""
         for sds_name in self.SD.datasets().keys():
             print(sds_name)
 
-    def reflectance_data(self, sb=None, background_value=-999.0):
+    def load_reflectance_data(self, sb=None, background_value=-999.0):
         """Get the Top of the Atmosphere reflectance data array
 
         :argument
@@ -109,23 +126,20 @@ class MODIS021KM_L1B(object):
                       The type of sb is a list of str with ["1", "2", "3" ..] or a str like "1".
                       Default value of sb is None which means all the bands will be loads.
         """
-        self.sb_dic = self.get_sdsname_index_by_band(sb)
-        self.data_dic = {}
-        for sds_name in self.get_sdsname_index_by_band(sb).keys():
+        sb_dic = self.get_sdsname_index_by_band(sb)
+        self.ref_data_list = []
+        for sds_name in sb_dic.keys():
             data_array = ExtractSDSDataArr(self.SD, sds_name, background_value).get()
-            # TODO the storage of MOD02 data.
-            a = 0
+            for index in sb_dic[sds_name]:
+                self.ref_data_list.append(data_array[index, :, :])
         return
 
-
     def get_sdsname_index_by_band(self, sb=None):
-
         """Get the sds names and the index of 3D-array"""
 
         ref_250m_bns = ["1", "2", ]
         ref_500m_bns = ["3", "4", "5", "6", "7", ]
-        ref_1km_bns = ["8", "9", "10", "11", "12", "13lo", "13hi",
-                       "14lo", "14hi", "15", "16", "17", "18", "19", "26"]
+        ref_1km_bns = ["8", "9", "10", "11", "12", "13lo", "13hi", "14lo", "14hi", "15", "16", "17", "18", "19", "26"]
 
         if sb is None:
             sb_dic = {
@@ -134,13 +148,15 @@ class MODIS021KM_L1B(object):
                 'EV_1KM_RefSB': [x for x in len(ref_250m_bns)]
             }
             return sb_dic
-
+        else:
+            pass
 
         sb_dic = {
             'EV_250_Aggr1km_RefSB': [],
             'EV_500_Aggr1km_RefSB': [],
             'EV_1KM_RefSB': []
         }
+
         def add2_sb_dic(sb_dic, bn):
             """Add index to corresponding sds"""
             if bn in ref_250m_bns:
@@ -158,6 +174,7 @@ class MODIS021KM_L1B(object):
                         (ref_250m_bns + ref_500m_bns + ref_1km_bns)
                     )
                 )
+
         def remove_none_sb_dic(sb_dic):
             for key in list(sb_dic.keys()):
                 if len(sb_dic[key]) == 0:
@@ -177,20 +194,12 @@ class MODIS021KM_L1B(object):
         return sb_dic
 
 
-
-
 if __name__ == '__main__':
 
-    tst_file = r'D:\MyWorkSpace\Random_Tree\MODIS_machine_learning\data\MOD02\MOD021KM.A2012284.0255.061.2017339003528.hdf'
+    # tst_file = r'D:\MyWorkSpace\Random_Tree\MODIS_machine_learning\data\MOD02\MOD021KM.A2012284.0255.061.2017339003528.hdf'
+    tst_file = '/Users/aaron/Projects/MyWorkSpace/ThreePoles/data/MOD021KM.A2019013.0450.061.2019013132919.hdf'
     mod021km = MODIS021KM_L1B(tst_file)
-    mod021km.reflectance_data(["1", "2", "3"])
-    # mod021km.show_SD_names()
+    mod021km.load_reflectance_data(["1", "2", "3"])
+    data_array = mod021km.ref_data_list
 
-
-    a=0
-
-
-
-
-
-
+    a = 0
